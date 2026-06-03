@@ -32,4 +32,4 @@ jobs:
 
       - name: Subir reporte a S3
         if: always()
-        run: aws s3 sync allure-report s3://sdet-reportes-allure-8754/reportes/${{ github.run_number }}/
+        run: aws s3 sync allure-report s3://sdet-reportes-allure-8754/reportes/run-${{ github.run_number }}-$(date +%Y%m%d-%H%M)/
