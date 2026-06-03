@@ -22,9 +22,14 @@ jobs:
           allure_results: target/allure-results
           allure_report: allure-report
 
-      - name: Subir reporte como artifact
+      - name: Configurar credenciales AWS
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          name: allure-report
-          path: allure-report
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Subir reporte a S3
+        if: always()
+        run: aws s3 sync allure-report s3://sdet-reportes-allure-8754/reportes/${{ github.run_number }}/
