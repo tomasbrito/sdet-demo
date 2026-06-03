@@ -1,0 +1,16 @@
+# Build
+target/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Allure
+.allure/
+allure-results/
+allure-report/
+
+# OS
+Thumbs.db
+.DS_Store
